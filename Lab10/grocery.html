@@ -9,33 +9,24 @@
         </h1>
         <script>
             function receipt(){
-                var fn = document.getElementById("fn").value;
-                var ln = document.getElementById("ln").value;
-                var num1 = document.getElementById("num1").value;
-                var num2 = document.getElementById("num2").value;
-                var mail = document.getElementById("mail").value;
-                var applekg = document.getElementById("applekg").value;
-                var bananakg = document.getElementById("bananakg").value;
-                var avocadokg = document.getElementById("avocadokg").value;
-                var apple = document.getElementById("apple").checked;
-                var banana = document.getElementById("banana").checked;
-                var avocado = document.getElementById("avocado").checked;
-                var total = 0;
-                var receipt = "Customer Name: " + fn + " " + ln + "\nPhone Number: " + num1 + num2 + "\nEmail: " + mail + "\n\nProducts:\n";
-                if(apple){
-                    receipt += "Apple: " + applekg + " kg\n";
-                    total += 10 * applekg;
+                localStorage.setItem("fn",document.getElementById("fn").value);
+                localStorage.setItem("ln",document.getElementById("ln").value);
+                localStorage.setItem("num1",document.getElementById("num1").value);
+                localStorage.setItem("num2",document.getElementById("num2").value);
+                localStorage.setItem("mail",document.getElementById("mail").value);
+                localStorage.setItem("applekg",document.getElementById("applekg").value);
+                localStorage.setItem("bananakg",document.getElementById("bananakg").value);
+                localStorage.setItem("avocadokg",document.getElementById("avocadokg").value);
+                localStorage.setItem("apple",document.getElementById("apple").checked);
+                localStorage.setItem("banana",document.getElementById("banana").checked);
+                localStorage.setItem("avocado",document.getElementById("avocado").checked);
+                if ((document.getElementById("apple").checked || document.getElementById("banana").checked || document.getElementById("avocado").checked) && (applekg.value > 0 || bananakg.value > 0 || avocadokg.value > 0)){
+                    alert("Order Placed Successfully!");
+                    window.location.href = 'receipt.html';
                 }
-                if(banana){
-                    receipt += "Banana: " + bananakg + " kg\n";
-                    total += 5 * bananakg;
+                else{
+                    alert("Please select at least one product!");
                 }
-                if(avocado){
-                    receipt += "Avocado: " + avocadokg + " kg\n";
-                    total += 7 * avocadokg;
-                }
-                receipt += "\nTotal: $" + total;
-                alert(receipt);
             }
         </script>
         <style>
@@ -56,7 +47,7 @@
           </style>
     </head>   
     <body style="background-color: rgba(11, 90, 11, 0.579); font-size: larger;">
-        <form onsubmit="receipt()">
+        <form>
             <b>Customer Name</b><br>
             <input type="text" id="fn" required style="border-radius: 50px;">
             <input type="text" id="ln" required style="border-radius: 50px;"><br><br>
@@ -111,9 +102,8 @@
                 </tr>
             </table>
             <div class="center">
-                <input type="submit" value="SUBMIT" class="submit">
+                <input type="button" value="SUBMIT" class="submit" onclick="receipt()">
             </div>
-            
         </form>
     </body> 
 </html>
