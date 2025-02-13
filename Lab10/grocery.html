@@ -8,70 +8,111 @@
             Grocery Order Form
         </h1>
         <script>
-        
+            function receipt(){
+                var fn = document.getElementById("fn").value;
+                var ln = document.getElementById("ln").value;
+                var num1 = document.getElementById("num1").value;
+                var num2 = document.getElementById("num2").value;
+                var mail = document.getElementById("mail").value;
+                var applekg = document.getElementById("applekg").value;
+                var bananakg = document.getElementById("bananakg").value;
+                var avocadokg = document.getElementById("avocadokg").value;
+                var apple = document.getElementById("apple").checked;
+                var banana = document.getElementById("banana").checked;
+                var avocado = document.getElementById("avocado").checked;
+                var total = 0;
+                var receipt = "Customer Name: " + fn + " " + ln + "\nPhone Number: " + num1 + num2 + "\nEmail: " + mail + "\n\nProducts:\n";
+                if(apple){
+                    receipt += "Apple: " + applekg + " kg\n";
+                    total += 10 * applekg;
+                }
+                if(banana){
+                    receipt += "Banana: " + bananakg + " kg\n";
+                    total += 5 * bananakg;
+                }
+                if(avocado){
+                    receipt += "Avocado: " + avocadokg + " kg\n";
+                    total += 7 * avocadokg;
+                }
+                receipt += "\nTotal: $" + total;
+                alert(receipt);
+            }
         </script>
         <style>
             input.larger {
-              width: 20px;
-              height: 25px;
+              transform: scale(2);
+            }
+            div.center {
+                text-align: center;
+            }
+            input.submit {
+                background-color: orange;
+                color: white;
+                padding: 10px 75px;
+                border-radius: 10px;
+                cursor: pointer;
+                border: none;
             }
           </style>
     </head>   
     <body style="background-color: rgba(11, 90, 11, 0.579); font-size: larger;">
-        <form>
+        <form onsubmit="receipt()">
             <b>Customer Name</b><br>
-            <input type="text" id="fn" style="border-radius: 50px;">
-            <input type="text" id="ln" style="border-radius: 50px;"><br><br>
+            <input type="text" id="fn" required style="border-radius: 50px;">
+            <input type="text" id="ln" required style="border-radius: 50px;"><br><br>
             <b>Phone Number</b><br>
-            <input type="tel" id="num1" style="border-radius: 50px;">
-            <input type="tel" id="num2" style="border-radius: 50px;"><br><br>
+            <input type="tel" id="num1" required style="border-radius: 50px;">
+            <input type="tel" id="num2" required style="border-radius: 50px;"><br><br>
             <b>Email</b><br>
-            <input type="email" id="mail" style="border-radius: 50px;"><br><br>
+            <input type="email" id="mail" required style="border-radius: 50px;"><br><br>
             <h3>Products</h3>
             <table border="0" cellspacing="10" cellpadding="10">
                 <tr>
                     <td>
-                        <img src="https://th.bing.com/th/id/OIP.VCgRxWcTx836WafFitRx0AHaIn?w=158&h=184&c=7&r=0&o=5&pid=1.7" height="75" width="auto" alt="Apple" style="border-radius: 50%;height: 10;width: auto;">
+                        <img src="Apple.png" height="75" width="auto" alt="Apple" style="border-radius: 50%;">   
                     </td>
                     <td>
-                        <input type="checkbox" id="apple" class="larger">Apple
+                        <input type="checkbox" id="apple" class="larger" >&nbsp;&nbsp;&nbsp;Apple
                     </td>
                     <td>
                         &dollar;10
                     </td>
                     <td>
-                        <input type="number" id="applekg" style="border-radius: 50px;width: 40px;"> kg
+                        <input type="number" id="applekg" min="0" style="border-radius: 50px;width: 40px;"> kg
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <img src="https://th.bing.com/th/id/OIP.VCgRxWcTx836WafFitRx0AHaIn?w=158&h=184&c=7&r=0&o=5&pid=1.7" height="75" width="auto" alt="Apple" style="border-radius: 50%;height: 10;width: auto;">
+                        <img src="Banana.png" height="75" width="auto" alt="Banana" style="border-radius: 50%;">
                     </td>
                     <td>
-                        <input type="checkbox" id="banana" class="larger">Banana
+                        <input type="checkbox" id="banana" class="larger">&nbsp;&nbsp;&nbsp;Banana
                     </td>
                     <td>
                         &dollar;5
                     </td>
                     <td>
-                        <input type="number" id="bananakg" style="border-radius: 50px;width: 40px;"> kg
+                        <input type="number" id="bananakg" min="0" style="border-radius: 50px;width: 40px;"> kg
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <img src="https://th.bing.com/th/id/OIP.VCgRxWcTx836WafFitRx0AHaIn?w=158&h=184&c=7&r=0&o=5&pid=1.7" height="75" width="auto" alt="Apple" style="border-radius: 50%;height: 10;width: auto;">
+                        <img src="Avocado.png" height="75" width="auto" alt="Avocado" style="border-radius: 50%;">
                     </td>
                     <td>
-                        <input type="checkbox" id="avocado" class="larger">Avocado
+                        <input type="checkbox" id="avocado" class="larger" >&nbsp;&nbsp;&nbsp;Avocado
                     </td>
                     <td>
                         &dollar;7
                     </td>
                     <td>
-                        <input type="number" id="avocadokg" style="border-radius: 50px;width: 40px;"> kg
+                        <input type="number" id="avocadokg" min="0" style="border-radius: 50px;width: 40px;"> kg
                     </td>
                 </tr>
             </table>
+            <div class="center">
+                <input type="submit" value="SUBMIT" class="submit">
+            </div>
             
         </form>
     </body> 
