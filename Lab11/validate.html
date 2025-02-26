@@ -145,7 +145,6 @@
                     id="pan";
                     pattern3=/[A-Z]{5}[0-9]{4}[A-Z]/;
                     if (!pattern3.test(document.getElementById(id).value.toUpperCase())){
-                        alert(document.getElementById(id).value);
                         flag=false;
                         document.getElementById(id).style.outlineColor="red";
                         document.getElementById(id).focus();
@@ -157,7 +156,8 @@
                     }
                 }
                 if (flag){
-                    document.getElementById("F1").submit();
+                    alert("Form Submitted Successfully!");
+                    print();
                 }
             }
         </script>
@@ -230,8 +230,8 @@
                             Gender<font>*</font>
                         </td>
                         <td>
-                            <input type="radio" name="gender" id="male" class="required">Male
-                            <input type="radio" name="gender" id="female" class="required">Female
+                            <input type="radio" name="gender" value="Male" id="male" class="required">Male
+                            <input type="radio" name="gender" value="Female" id="female" class="required">Female
                         </td>
                         <td><font id="gender1"></font></td>
                         <td>
@@ -247,9 +247,9 @@
                             Preferences<font>*</font>
                         </td>
                         <td>
-                            <input type="checkbox" id="red" name="colors" class="required">Red
-                            <input type="checkbox" id="green" name="colors" class="required">Green
-                            <input type="checkbox" id="blue" name="colors" class="required">Blue
+                            <input type="checkbox" id="red" name="colors" value="Red" class="required">Red
+                            <input type="checkbox" id="green" name="colors" value="Green" class="required">Green
+                            <input type="checkbox" id="blue" name="colors" value="Blue" class="required">Blue
                         </td>
                         <td><font id="colors1"></font></td>
                     </tr>
@@ -298,6 +298,7 @@
                     </tr>
                 </table>
             </fieldset>
+            <div id="disp"></div>
         </form>
         <script>
             function timer(){
@@ -311,6 +312,37 @@
                 return t;
             }
             setInterval(timer,1000);
+            function print(){
+                let output = "<fieldset><legend>Print Details</legend><table border='1'>";
+                output += "<tr><td>Name</td><td>" + document.getElementById("name").value + "</td></tr>";
+                output += "<tr><td>Address</td><td>" + (document.getElementById("address").value || "N/A") + "</td></tr>";
+                output += "<tr><td>Zip Code</td><td>" + document.getElementById("zip code").value + "</td></tr>";
+                output += "<tr><td>Country</td><td>" + document.getElementById("country").value + "</td></tr>";
+                
+                gen = document.getElementsByName("gender");
+                for (i = 0; i < gen.length; i++) {
+                    if (gen[i].checked) {
+                        output += "<tr><td>Gender</td><td>" + gen[i].value + "</td></tr>";
+                    }
+                }
+
+                output += "<tr><td>Preferences</td><td><ul>";
+                col = document.getElementsByName("colors");
+                for (i = 0; i < col.length; i++) {
+                    if (col[i].checked) {
+                        output += "<li>" + col[i].value + "</li>";
+                    }
+                }
+                output += "</ul></td></tr>";
+
+                output += "<tr><td>Phone</td><td>" + document.getElementById("phone number").value + "</td></tr>";
+                output += "<tr><td>Email</td><td>" + document.getElementById("mail").value + "</td></tr>";
+                output += "<tr><td>Password</td><td>" + document.getElementById("password").value + "</td></tr>";
+                output += "<tr><td>Pan No</td><td>" + (document.getElementById("pan").value || "N/A") + "</td></tr>";
+                output += "</table></fieldset>";
+                document.getElementById("disp").innerHTML = output;
+                rst();
+            }
         </script>
     </body> 
 </html>
