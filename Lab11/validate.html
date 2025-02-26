@@ -1,0 +1,316 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Welcome to my page - 23BCE1156
+        </title>
+        <script>
+            function rst(){
+                document.getElementById("F1").reset();
+                document.getElementById("name").focus();
+            }
+            function validate(){
+                flag=true;
+                arr=document.getElementsByClassName("required");
+                for (i=0;i<arr.length;i++){
+                    if (arr[i].name!="gender" && arr[i].name!="colors"){
+                        id=arr[i].id;
+                        if (!arr[i].value){
+                            document.getElementById(id).style.outlineColor="red";
+                            document.getElementById(id).focus();
+                            document.getElementById(id+"1").innerHTML=("Please enter your "+arr[i].id+"!");
+                            flag=false;
+                            break;
+                            
+                        }
+                        else{
+                            document.getElementById(id).style.outlineColor="black";
+                            document.getElementById(id+"1").innerHTML="";
+                        }
+                        if (id=="zip code"){
+                            pattern1=/^[1-9][0-9]{5}$/;
+                            if (!pattern1.test((document.getElementById(id).value))){
+                                document.getElementById(id).style.outlineColor="red";
+                                document.getElementById(id).focus();
+                                document.getElementById("zip code1").innerHTML="Please enter correct pincode";
+                                flag=false;
+                                break;
+                            }
+                            else{
+                                document.getElementById(id).style.outlineColor="black";
+                                document.getElementById(id+"1").innerHTML="";
+                            }
+                        }
+                        if (id=="phone number"){
+                            if (isNaN(document.getElementById(id).value)){
+                                flag=false;
+                                document.getElementById(id).style.outlineColor="red";
+                                document.getElementById(id).focus();
+                                document.getElementById("phone number1").innerHTML="Please enter correct phone number";
+                                break;
+                            }
+                            else{
+                                document.getElementById(id).style.outlineColor="black";
+                                document.getElementById(id+"1").innerHTML="";
+                            }
+                        }
+                        if (id=="mail"){
+                            pattern2=/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+                            if (!pattern2.test(document.getElementById(id).value)){
+                                flag=false;
+                                document.getElementById(id).style.outlineColor="red";
+                                document.getElementById(id).focus();
+                                document.getElementById(id+"1").innerHTML="Please enter correct Mail ID";
+                                break;
+                            }
+                            else{
+                                document.getElementById(id).style.outlineColor="black";
+                                document.getElementById(id+"1").innerHTML="";
+                            }
+                        }
+                        if (id=="password"){
+                            pass=document.getElementById(id).value;
+                            if (!pass.match(/[0-9]/)){
+                                flag=false;
+                                document.getElementById(id).style.outlineColor="red";
+                                document.getElementById(id).focus();
+                                document.getElementById(id+"1").innerHTML="Password should contain atleast 1 number";
+                                break;
+                            }
+                            if (!pass.match(/[a-zA-Z]/)){
+                                flag=false;
+                                document.getElementById(id).style.outlineColor="red";
+                                document.getElementById(id).focus();
+                                document.getElementById(id+"1").innerHTML="Password should contain atleast 1 character";
+                                break;
+                            }
+                            if (!pass.match(/[!@#$%^&*]/)){
+                                flag=false;
+                                document.getElementById(id).style.outlineColor="red";
+                                document.getElementById(id).focus();
+                                document.getElementById(id+"1").innerHTML="Password should contain atleast 1 special character";
+                                break;
+                            }
+                            if (pass.length<8){
+                                flag=false;
+                                document.getElementById(id).style.outlineColor="red";
+                                document.getElementById(id).focus();
+                                document.getElementById(id+"1").innerHTML="Password should be atleast a length of 8";
+                                break;
+                            }
+                            else{
+                                document.getElementById(id).style.outlineColor="black";
+                                document.getElementById(id+"1").innerHTML="";
+                            }
+                        }
+                        if (id=="confirm password"){
+                            if (document.getElementById("password").value===document.getElementById(id).value){
+                                document.getElementById(id).style.outlineColor="black";
+                                document.getElementById(id+"1").innerHTML="";
+                            }
+                            else{
+                                flag=false;
+                                document.getElementById(id).style.outlineColor="red";
+                                document.getElementById(id).focus();
+                                document.getElementById(id+"1").innerHTML="Confirm Password does not match Password";
+                                break;
+                            }
+                        }
+                    }
+                    if (arr[i].name=="gender"){
+                        g=document.getElementsByName("gender");
+                        if (g[0].checked || g[1].checked){
+                            document.getElementById("gender1").innerHTML="";
+                        }
+                        else{
+                            flag=false;
+                            document.getElementById("gender1").innerHTML="Please select your gender!";
+                            break;
+                        }
+                    }
+                    if (arr[i].name=="colors"){
+                        c=document.getElementsByName("colors");
+                        if (c[0].checked || c[1].checked || c[2].checked){
+                            document.getElementById("colors1").innerHTML="";
+                        }
+                        else{
+                            flag=false;
+                            document.getElementById("colors1").innerHTML="Please select a color";
+                            break;
+                        }
+                    }
+                }
+                if (document.getElementById("pan").value){
+                    id="pan";
+                    pattern3=/[A-Z]{5}[0-9]{4}[A-Z]/;
+                    if (!pattern3.test(document.getElementById(id).value.toUpperCase())){
+                        alert(document.getElementById(id).value);
+                        flag=false;
+                        document.getElementById(id).style.outlineColor="red";
+                        document.getElementById(id).focus();
+                        document.getElementById(id+"1").innerHTML="Please Enter correct Pan Number";
+                    }
+                    else{
+                        document.getElementById(id).style.outlineColor="black";
+                        document.getElementById(id+"1").innerHTML="";
+                    }
+                }
+                if (flag){
+                    document.getElementById("F1").submit();
+                }
+            }
+        </script>
+        <style>
+            font{
+                color: red;
+            }
+        </style>
+    </head>   
+    <body style="font-size: larger;">
+        <form id="F1">
+            <fieldset>
+                <table border="0" cellspacing="1" cellpadding="1">
+                    <tr>
+                        <td colspan="2">
+                            <h1>
+                                Test JavaScript Form Validation
+                            </h1>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <input id="time" type="text" size="10" readonly>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Name<font>*</font>
+                        </td>
+                        <td>
+                            <input type="text" id="name" maxlength="15" class="required">
+                        </td>
+                        <td><font id="name1">&nbsp;</font></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Address
+                        </td>
+                        <td>
+                            <input type="text" id="address">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Zip Code<font>*</font>
+                        </td>
+                        <td>
+                            <input type="text" id="zip code" pattern="[0-9]{6}" maxlength="6" class="required">
+                        </td>
+                        <td><font id="zip code1">&nbsp;</font></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Country<font>*</font>
+                        </td>
+                        <td>
+                            <select  id="country" class="required">
+                                <option value="">Please select...</option>
+                                <option value="India">India</option>
+                                <option value="USA">USA</option>
+                                <option value="Pakistan">Pakistan</option>
+                                <option value="SriLanka">SriLanka</option>
+                                <option value="Bangladesh">Bangladesh</option>
+                            </select>
+                        </td>
+                        <td><font id="country1">&nbsp;</font></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Gender<font>*</font>
+                        </td>
+                        <td>
+                            <input type="radio" name="gender" id="male" class="required">Male
+                            <input type="radio" name="gender" id="female" class="required">Female
+                        </td>
+                        <td><font id="gender1"></font></td>
+                        <td>
+                            Pan No:
+                        </td>
+                        <td>
+                            <input type="text" maxlength="10" id="pan" size="10" pattern="[A-Z]{5}[0-9]{4}[A-Z]" style="text-transform: uppercase;">
+                        </td>
+                        <td><font id="pan1"></font></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Preferences<font>*</font>
+                        </td>
+                        <td>
+                            <input type="checkbox" id="red" name="colors" class="required">Red
+                            <input type="checkbox" id="green" name="colors" class="required">Green
+                            <input type="checkbox" id="blue" name="colors" class="required">Blue
+                        </td>
+                        <td><font id="colors1"></font></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Phone<font>*</font>
+                        </td>
+                        <td>
+                            <input type="tel" id="phone number" pattern="[0-9]{1,10}" maxlength="10" class="required">
+                        </td>
+                        <td><font id="phone number1">&nbsp;</font></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Email<font>*</font>
+                        </td>
+                        <td>
+                            <input type="email" id="mail" class="required">
+                        </td>
+                        <td><font id="mail1">&nbsp;</font></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Password(6-8 characters)<font>*</font>
+                        </td>
+                        <td>
+                            <input type="text" id="password" maxlength="15" class="required">
+                        </td>
+                        <td><font id="password1">&nbsp;</font></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Verify password<font>*</font>
+                        </td>
+                        <td>
+                            <input type="text" id="confirm password" maxlength="15" class="required">
+                        </td>
+                        <td><font id="confirm password1">&nbsp;</font></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input type="button" value="SEND" onclick="validate()">
+                            <input type="button" value="CLEAR" onclick="rst()">
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        </form>
+        <script>
+            function timer(){
+                current=new Date();
+                document.getElementById("time").value="Time: "+addZero(current.getHours())+":"+addZero(current.getMinutes())+":"+addZero(current.getSeconds());
+            }
+            function addZero(t){
+                if (t<10){
+                    return "0"+t;
+                }
+                return t;
+            }
+            setInterval(timer,1000);
+        </script>
+    </body> 
+</html>
