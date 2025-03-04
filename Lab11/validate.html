@@ -313,20 +313,21 @@
             }
             setInterval(timer,1000);
             function print(){
-                let output = "<fieldset><legend>Print Details</legend><table border='1'>";
-                output += "<tr><td>Name</td><td>" + document.getElementById("name").value + "</td></tr>";
-                output += "<tr><td>Address</td><td>" + (document.getElementById("address").value || "N/A") + "</td></tr>";
-                output += "<tr><td>Zip Code</td><td>" + document.getElementById("zip code").value + "</td></tr>";
-                output += "<tr><td>Country</td><td>" + document.getElementById("country").value + "</td></tr>";
+                let p=window.open();
+                let output = "<h1>Print Details</h1><table border='0'>";
+                output += "<tr><td><b>Name:</b></td><td>" + document.getElementById("name").value + "</td></tr>";
+                output += "<tr><td><b>Address:</b></td><td>" + (document.getElementById("address").value || "N/A") + "</td></tr>";
+                output += "<tr><td><b>Zip Code:</b></td><td>" + document.getElementById("zip code").value + "</td></tr>";
+                output += "<tr><td><b>Country:</b></td><td>" + document.getElementById("country").value + "</td></tr>";
                 
                 gen = document.getElementsByName("gender");
                 for (i = 0; i < gen.length; i++) {
                     if (gen[i].checked) {
-                        output += "<tr><td>Gender</td><td>" + gen[i].value + "</td></tr>";
+                        output += "<tr><td><b>Gender:</td><td>" + gen[i].value + "</td></tr>";
                     }
                 }
 
-                output += "<tr><td>Preferences</td><td><ul>";
+                output += "<tr><td>Preferences:</td><td><ul>";
                 col = document.getElementsByName("colors");
                 for (i = 0; i < col.length; i++) {
                     if (col[i].checked) {
@@ -335,12 +336,13 @@
                 }
                 output += "</ul></td></tr>";
 
-                output += "<tr><td>Phone</td><td>" + document.getElementById("phone number").value + "</td></tr>";
-                output += "<tr><td>Email</td><td>" + document.getElementById("mail").value + "</td></tr>";
-                output += "<tr><td>Password</td><td>" + document.getElementById("password").value + "</td></tr>";
-                output += "<tr><td>Pan No</td><td>" + (document.getElementById("pan").value || "N/A") + "</td></tr>";
-                output += "</table></fieldset>";
-                document.getElementById("disp").innerHTML = output;
+                output += "<tr><td><b>Phone:</td><td></b>" + document.getElementById("phone number").value + "</td></tr>";
+                output += "<tr><td><b>Email:</td><td></b>" + document.getElementById("mail").value + "</td></tr>";
+                output += "<tr><td><b>Password:</td><td></b>" + document.getElementById("password").value + "</td></tr>";
+                output += "<tr><td><b>Pan No:</td><td></b>" + (document.getElementById("pan").value || "N/A") + "</td></tr>";
+                output += "</table>";
+                //document.getElementById("disp").innerHTML = output;
+                p.document.write(output);
                 rst();
             }
         </script>
