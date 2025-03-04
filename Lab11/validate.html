@@ -10,24 +10,24 @@
                 document.getElementById("F1").reset();
                 document.getElementById("name").focus();
             }
+            function v1(input){
+                id=input.id;
+                if (!input.value){
+                    document.getElementById(id).style.outlineColor="red";
+                    document.getElementById(id).focus();
+                    document.getElementById(id+"1").innerHTML=("Please enter your "+id+"!");
+                }
+                else{
+                    document.getElementById(id).style.outlineColor="black";
+                    document.getElementById(id+"1").innerHTML="";
+                }
+            }
             function validate(){
                 flag=true;
                 arr=document.getElementsByClassName("required");
                 for (i=0;i<arr.length;i++){
                     if (arr[i].name!="gender" && arr[i].name!="colors"){
                         id=arr[i].id;
-                        if (!arr[i].value){
-                            document.getElementById(id).style.outlineColor="red";
-                            document.getElementById(id).focus();
-                            document.getElementById(id+"1").innerHTML=("Please enter your "+arr[i].id+"!");
-                            flag=false;
-                            break;
-                            
-                        }
-                        else{
-                            document.getElementById(id).style.outlineColor="black";
-                            document.getElementById(id+"1").innerHTML="";
-                        }
                         if (id=="zip code"){
                             pattern1=/^[1-9][0-9]{5}$/;
                             if (!pattern1.test((document.getElementById(id).value))){
@@ -188,7 +188,7 @@
                             Name<font>*</font>
                         </td>
                         <td>
-                            <input type="text" id="name" maxlength="15" class="required">
+                            <input type="text" id="name" maxlength="15" class="required" onblur="v1(this)">
                         </td>
                         <td><font id="name1">&nbsp;</font></td>
                     </tr>
@@ -205,7 +205,7 @@
                             Zip Code<font>*</font>
                         </td>
                         <td>
-                            <input type="text" id="zip code" pattern="[0-9]{6}" maxlength="6" class="required">
+                            <input type="text" id="zip code" pattern="[0-9]{6}" maxlength="6" class="required" onblur="v1(this)">
                         </td>
                         <td><font id="zip code1">&nbsp;</font></td>
                     </tr>
@@ -214,7 +214,7 @@
                             Country<font>*</font>
                         </td>
                         <td>
-                            <select  id="country" class="required">
+                            <select  id="country" class="required" onblur="v1(this)">
                                 <option value="">Please select...</option>
                                 <option value="India">India</option>
                                 <option value="USA">USA</option>
@@ -258,7 +258,7 @@
                             Phone<font>*</font>
                         </td>
                         <td>
-                            <input type="tel" id="phone number" pattern="[0-9]{1,10}" maxlength="10" class="required">
+                            <input type="tel" id="phone number" pattern="[0-9]{1,10}" maxlength="10" class="required" onblur="v1(this)">
                         </td>
                         <td><font id="phone number1">&nbsp;</font></td>
                     </tr>
@@ -267,7 +267,7 @@
                             Email<font>*</font>
                         </td>
                         <td>
-                            <input type="email" id="mail" class="required">
+                            <input type="email" id="mail" class="required" onblur="v1(this)">
                         </td>
                         <td><font id="mail1">&nbsp;</font></td>
                     </tr>
@@ -276,7 +276,7 @@
                             Password(6-8 characters)<font>*</font>
                         </td>
                         <td>
-                            <input type="text" id="password" maxlength="15" class="required">
+                            <input type="text" id="password" maxlength="15" class="required" onblur="v1(this)">
                         </td>
                         <td><font id="password1">&nbsp;</font></td>
                     </tr>
@@ -285,7 +285,7 @@
                             Verify password<font>*</font>
                         </td>
                         <td>
-                            <input type="text" id="confirm password" maxlength="15" class="required">
+                            <input type="text" id="confirm password" maxlength="15" class="required" onblur="v1(this)">
                         </td>
                         <td><font id="confirm password1">&nbsp;</font></td>
                     </tr>
@@ -327,7 +327,7 @@
                     }
                 }
 
-                output += "<tr><td>Preferences:</td><td><ul>";
+                output += "<tr><td><b>Preferences:<b></td><td><ul>";
                 col = document.getElementsByName("colors");
                 for (i = 0; i < col.length; i++) {
                     if (col[i].checked) {
@@ -341,7 +341,6 @@
                 output += "<tr><td><b>Password:</td><td></b>" + document.getElementById("password").value + "</td></tr>";
                 output += "<tr><td><b>Pan No:</td><td></b>" + (document.getElementById("pan").value || "N/A") + "</td></tr>";
                 output += "</table>";
-                //document.getElementById("disp").innerHTML = output;
                 p.document.write(output);
                 rst();
             }
